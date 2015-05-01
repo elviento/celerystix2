@@ -1,0 +1,26 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "some-rabbit",
+      "image": "rabbitmq:latest",
+      "essential": true,
+      "memory": 1024
+    },
+    {
+      "name": "some-celery",
+      "image": "celery:latest",
+      "essential": true,
+      "memory": 1024,
+      "portMappings": [
+        {
+          "hostPort": 5672,
+          "containerPort": 5672
+        }
+      ],
+      "links": [
+        "some-rabbit"
+      ]
+    }
+  ]
+}
